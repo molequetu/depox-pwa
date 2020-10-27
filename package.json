@@ -2,7 +2,7 @@
   "name": "depox-mw-material",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://molequetu.github.io/depox-pwa/",
+  "homepage": "https://molequetu.github.io/depox-pwa",
   "dependencies": {
     "@formatjs/intl-relativetimeformat": "^7.3.0",
     "@material-ui/core": "^4.11.0",
