@@ -1,0 +1,2 @@
+(this["webpackJsonpdepox-mw-material"]=this["webpackJsonpdepox-mw-material"]||[]).push([[15],{476:function(e,t,i){"use strict";i.r(t);var n=i(12),o=(i(0),i(56));t.default=function(){return Object(n.jsxs)("div",{style:{position:"absolute",left:0,top:0,bottom:0,right:0,display:"flex",justifyContent:"center",alignItems:"center",flexDirection:"column"},children:[Object(n.jsx)("h2",{children:"Landing Page"}),Object(n.jsx)("div",{children:Object(n.jsx)(o.Link,{to:"/home",children:"Home"})})]})}}}]);
+//# sourceMappingURL=15.c7be99da.chunk.js.map
