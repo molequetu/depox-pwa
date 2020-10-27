@@ -1,6 +1,7 @@
 import ChatBubble from '@material-ui/icons/ChatBubble'
 import ChromeReaderMode from '@material-ui/icons/ChromeReaderMode'
 import DaschboardIcon from '@material-ui/icons/Dashboard'
+import ImportExportIcon from '@material-ui/icons/ImportExport';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp'
 import FilterList from '@material-ui/icons/FilterList'
 import GetApp from '@material-ui/icons/GetApp'
@@ -83,7 +84,12 @@ const getMenuItems = (props) => {
       primaryText: intl.formatMessage({ id: 'home' }),
       leftIcon: <DaschboardIcon />,
     },
-
+    {
+      value: '/import',
+      visible: isAuthorised,
+      primaryText: intl.formatMessage({ id: 'import' }),
+      leftIcon: <ImportExportIcon />,
+    },
     {
       primaryText: intl.formatMessage({ id: 'demos', defaultMessage: 'Demos' }),
       primaryTogglesNestedList: true,

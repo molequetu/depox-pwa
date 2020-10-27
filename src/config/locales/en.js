@@ -37,7 +37,11 @@ const messages = defineMessages({
   forgot_password:'Forgot password',
   password_reset:'Password reset',
   password_confirm:'Password confirm',
-  registration:'Registration'
+  registration:'Registration',
+  product: "Product",
+  bin: "Bin",
+  import : "Import",
+  import_products: "Import products"
 })
 
 export default messages
