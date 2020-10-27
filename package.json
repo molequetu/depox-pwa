@@ -2,6 +2,7 @@
   "name": "depox-mw-material",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://github.com/molequetu/depox-pwa",
   "dependencies": {
     "@formatjs/intl-relativetimeformat": "^7.3.0",
     "@material-ui/core": "^4.11.0",
@@ -24,11 +25,16 @@
     "react-virtualized-auto-sizer": "^1.0.2",
     "react-window": "^1.8.5"
   },
+  "devDependencies": {
+    "gh-pages": "3.1.0"
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": "react-app"
