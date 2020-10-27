@@ -1,2 +1,0 @@
-(this["webpackJsonpdepox-mw-material"]=this["webpackJsonpdepox-mw-material"]||[]).push([[14],{485:function(e,t,a){"use strict";a.r(t);var i=a(12),s=a(124),r=a.n(s),n=(a(0),a(129)),c=a.n(n),h=a(146);t.default=function(){var e=Object(h.a)();return Object(i.jsx)(r.a,{pageTitle:e.formatMessage({id:"home"}),children:Object(i.jsx)(c.a,{style:{height:"100%",width:"100%",display:"flex",flex:1},children:e.formatMessage({id:"home"})})})}}}]);
-//# sourceMappingURL=14.4b95581f.chunk.js.map

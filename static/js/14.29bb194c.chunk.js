@@ -1,0 +1,2 @@
+(this["webpackJsonpdepox-pwa"]=this["webpackJsonpdepox-pwa"]||[]).push([[14],{486:function(e,t,a){"use strict";a.r(t);var s=a(10),i=a(124),n=a.n(i),p=(a(0),a(129)),c=a.n(p),h=a(146);t.default=function(){var e=Object(h.a)();return Object(s.jsx)(n.a,{pageTitle:e.formatMessage({id:"home"}),children:Object(s.jsx)(c.a,{style:{height:"100%",width:"100%",display:"flex",flex:1},children:e.formatMessage({id:"home"})})})}}}]);
+//# sourceMappingURL=14.29bb194c.chunk.js.map
