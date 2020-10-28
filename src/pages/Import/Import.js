@@ -6,6 +6,7 @@ import Paper from '@material-ui/core/Paper'
 import Typography from '@material-ui/core/Typography'
 import { makeStyles } from '@material-ui/core/styles';
 import { useIntl } from 'react-intl'
+import { useSnackbar } from 'notistack'
 
 const useStyles = makeStyles((theme) => ({
     paper: {
@@ -44,6 +45,8 @@ const useStyles = makeStyles((theme) => ({
 const Import = () =>  {
     const classes = useStyles()
     const intl = useIntl()
+    const { enqueueSnackbar } = useSnackbar()
+
     const [product, setProduct] = useState('')
     const [bin, setBin] = useState('')
     const [quantity, setQuantity] = useState(0)
@@ -51,27 +54,48 @@ const Import = () =>  {
     function handleSubmit(event) {
         event.preventDefault();
         importStock();
-        alert('A name was submitted: ' + product + " " + bin);
       }
 
       function importStock() {
         const data = { binCode : bin, itemCode : product, quantity : quantity };
         console.log(data);
-        fetch('http://localhost:57678/import', {
+         fetch('http://localhost:57678/import', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
             },
             body: JSON.stringify(data),
           })
-          .then(response => response.json())
+          .then(response => { console.log(response); return response.json()})
           .then(data => {
-            console.log('Success:', data);
+            if(data.status === 404) {
+              // in case of error 404, inform user
+              enqueueSnackbar(data.message, {
+                variant: 'error',
+                anchorOrigin: {
+                  vertical: 'top',
+                  horizontal: 'center',
+                },
+              })
+             return;
+            }
+            // request successfull, inform user and reset form
+            enqueueSnackbar(data.message, {
+              variant: 'success',
+              anchorOrigin: {
+                vertical: 'top',
+                horizontal: 'center',
+              },
+            })
+            setProduct('');
+            setBin('');
+            setQuantity(0);
           })
           .catch((error) => {
-            console.error('Error:', error);
+            console.error('Error while importing:', error);
           });
-      }
+      } 
+
 
       return (
         <Page pageTitle={intl.formatMessage({ id: 'import_products' })}>
