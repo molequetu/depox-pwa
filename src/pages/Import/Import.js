@@ -46,10 +46,31 @@ const Import = () =>  {
     const intl = useIntl()
     const [product, setProduct] = useState('')
     const [bin, setBin] = useState('')
+    const [quantity, setQuantity] = useState(0)
 
     function handleSubmit(event) {
         event.preventDefault();
+        importStock();
         alert('A name was submitted: ' + product + " " + bin);
+      }
+
+      function importStock() {
+        const data = { binCode : bin, itemCode : product, quantity : quantity };
+        console.log(data);
+        fetch('http://localhost:57678/import', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+          })
+          .then(response => response.json())
+          .then(data => {
+            console.log('Success:', data);
+          })
+          .catch((error) => {
+            console.error('Error:', error);
+          });
       }
 
       return (
@@ -59,7 +80,7 @@ const Import = () =>  {
             <Typography component="h1" variant="h5">
               {intl.formatMessage({ id: 'import_products' })}
             </Typography>
-            <form className={classes.form}   onSubmit={handleSubmit} noValidate>  
+            <form className={classes.form}   onSubmit={handleSubmit}>  
           <TextField
               value={product}
               onChange={(e) => setProduct(e.target.value)}
@@ -82,6 +103,27 @@ const Import = () =>  {
               name="bin"
               label={intl.formatMessage({ id: 'bin' })}
               id="bin"
+            />
+             <TextField
+             value = {quantity}
+             onChange={(e) => setQuantity(e.target.value)}
+             id="quantity"
+             label={intl.formatMessage({ id: 'quantity' })}
+             type="number"
+             InputLabelProps={{
+              shrink: true,
+
+             }}
+             InputProps={{
+              inputProps: { 
+                  min: 0
+              }
+             }}
+             variant="outlined"
+             margin="normal"
+             required
+             fullWidth
+             name="quantity"
             />
             <Button
               type="submit"

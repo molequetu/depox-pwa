@@ -41,7 +41,8 @@ const messages = defineMessages({
   product: "Product",
   bin: "Bin",
   import : "Import",
-  import_products: "Import products"
+  import_products: "Import products",
+  quantity: "Quantity"
 })
 
 export default messages
