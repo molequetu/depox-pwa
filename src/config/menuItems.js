@@ -91,6 +91,12 @@ const getMenuItems = (props) => {
       leftIcon: <ImportExportIcon />,
     },
     {
+      value: '/export',
+      visible: isAuthorised,
+      primaryText: intl.formatMessage({ id: 'export' }),
+      leftIcon: <ImportExportIcon />,
+    },
+    {
       primaryText: intl.formatMessage({ id: 'demos', defaultMessage: 'Demos' }),
       primaryTogglesNestedList: true,
       leftIcon: <Web />,
