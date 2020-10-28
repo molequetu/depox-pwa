@@ -78,10 +78,16 @@ const getMenuItems = (props) => {
     ]
   }
   return [
-    {
+ /*    {
       value: '/home',
       visible: isAuthorised,
       primaryText: intl.formatMessage({ id: 'home' }),
+      leftIcon: <DaschboardIcon />,
+    }, */
+    {
+      value: '/dashboard',
+      visible: isAuthorised,
+      primaryText: intl.formatMessage({ id: 'dashboard' }),
       leftIcon: <DaschboardIcon />,
     },
     {
@@ -96,7 +102,7 @@ const getMenuItems = (props) => {
       primaryText: intl.formatMessage({ id: 'export' }),
       leftIcon: <ImportExportIcon />,
     },
-    {
+    /* {
       primaryText: intl.formatMessage({ id: 'demos', defaultMessage: 'Demos' }),
       primaryTogglesNestedList: true,
       leftIcon: <Web />,
@@ -153,7 +159,7 @@ const getMenuItems = (props) => {
       visible: true,
       primaryText: intl.formatMessage({ id: 'about' }),
       leftIcon: <InfoOutlined />,
-    },
+    }, */
     { divider: true },
     {
       primaryText: intl.formatMessage({ id: 'settings' }),

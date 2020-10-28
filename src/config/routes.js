@@ -17,6 +17,8 @@ const TabsDemo = lazy(() => import('../pages/TabsDemo'))
 
 const Import = lazy(() => import('../pages/Import/Import'))
 const Export = lazy(() => import('../pages/Export/Export'))
+const Dashboard = lazy(() => import('../pages/Dashboard/StockMovements'))
+
 const routes = [
   <UnauthorizedRoute path="/signin" redirectTo="/" exact component={SignIn} />,
   <UnauthorizedRoute path="/signup" redirectTo="/" exact component={SignUp} />,
@@ -26,15 +28,15 @@ const routes = [
     exact
     component={PasswordReset}
   />,
-  <Route path="/about" exact component={About} />,
-  <AuthorizedRoute path="/home" exact component={Home} />,
+  // <AuthorizedRoute path="/home" exact component={Home} />,
+  <AuthorizedRoute path="/dashboard" exact component={Dashboard} />,
   <AuthorizedRoute path="/import" exact component={Import} />,
   <AuthorizedRoute path="/export" exact component={Export} />,
-  <AuthorizedRoute path="/dialog_demo" exact component={DialogDemo} />,
+ /*  <AuthorizedRoute path="/dialog_demo" exact component={DialogDemo} />,
   <AuthorizedRoute path="/toast_demo" exact component={ToastDemo} />,
   <AuthorizedRoute path="/filter_demo" exact component={FilterDemo} />,
   <AuthorizedRoute path="/list_page_demo" exact component={ListPageDemo} />,
-  <AuthorizedRoute path="/tabs_demo" exact component={TabsDemo} />,
+  <AuthorizedRoute path="/tabs_demo" exact component={TabsDemo} />, */
 ]
 
 export default routes

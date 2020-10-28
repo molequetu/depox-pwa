@@ -38,13 +38,14 @@ const messages = defineMessages({
   password_reset:'Password reset',
   password_confirm:'Password confirm',
   registration:'Registration',
-  product: "Product",
+  product: "Item",
   bin: "Bin",
   import : "Import",
-  import_products: "Import products",
+  import_products: "Import items",
   quantity: "Quantity",
   export: "Export",
-  export_products: "Export products"
+  export_products: "Export items",
+  dashboard: "Dashboard"
 })
 
 export default messages
