@@ -7,6 +7,7 @@ import Typography from '@material-ui/core/Typography'
 import { makeStyles } from '@material-ui/core/styles';
 import { useIntl } from 'react-intl'
 import { useSnackbar } from 'notistack'
+import config from 'config/config'
 
 const useStyles = makeStyles((theme) => ({
     paper: {
@@ -50,6 +51,8 @@ const Export = () =>  {
     const [product, setProduct] = useState('')
     const [bin, setBin] = useState('')
     const [quantity, setQuantity] = useState(0)
+   
+    const endpoint = 'Stocks/export'
 
     function handleSubmit(event) {
         event.preventDefault();
@@ -58,8 +61,7 @@ const Export = () =>  {
 
       function exportStock() {
         const data = { binCode : bin, itemCode : product, quantity : quantity };
-        console.log(data);
-         fetch('http://localhost:57678/export', {
+         fetch(`${config.apiURL + endpoint}`, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',

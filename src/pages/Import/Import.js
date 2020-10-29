@@ -7,6 +7,7 @@ import Typography from '@material-ui/core/Typography'
 import { makeStyles } from '@material-ui/core/styles';
 import { useIntl } from 'react-intl'
 import { useSnackbar } from 'notistack'
+import config from 'config/config'
 
 const useStyles = makeStyles((theme) => ({
     paper: {
@@ -51,15 +52,15 @@ const Import = () =>  {
     const [bin, setBin] = useState('')
     const [quantity, setQuantity] = useState(0)
 
+    const endpoint = 'Stocks/import';
     function handleSubmit(event) {
         event.preventDefault();
         importStock();
       }
 
-      function importStock() {
+    function importStock() {
         const data = { binCode : bin, itemCode : product, quantity : quantity };
-        console.log(data);
-         fetch('http://localhost:57678/import', {
+         fetch(`${config.apiURL + endpoint}`, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',

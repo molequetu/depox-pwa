@@ -9,6 +9,7 @@ const config = {
   auth: {
     signInURL: '/signin',
   },
+  apiURL: "https://depoxweb20201028233214.azurewebsites.net/api/",
   routes,
   locale: {
     locales,

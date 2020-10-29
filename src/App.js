@@ -6,7 +6,7 @@ import _config from './config'
 
 const config = merge(MUIConfig, _config)
 
-export default class Demo extends Component {
+export default class Depo extends Component {
   render() {
     return <App config={config} />
   }

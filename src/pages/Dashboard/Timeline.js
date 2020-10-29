@@ -27,7 +27,6 @@ export default function StockTimeline(props) {
   const classes = useStyles();
 
   function parseDate(date) {
-      console.log(new Date(date));
       return new Date(date).toLocaleTimeString();
   }
 
@@ -35,7 +34,7 @@ export default function StockTimeline(props) {
     <Timeline align="alternate">
       {props.stocks &&
         props.stocks.map((stock) => (
-          <TimelineItem>
+          <TimelineItem key={stock.id}>
             <TimelineOppositeContent>
               <Typography variant="body2" color="textSecondary">
                 {parseDate(stock.createdAt)}
