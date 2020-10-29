@@ -1,0 +1,2 @@
+(this.webpackJsonpdepo=this.webpackJsonpdepo||[]).push([[16],{498:function(e,t,s){"use strict";s.r(t);var a=s(18),i=s(124),n=s.n(i),c=(s(0),s(132)),h=s.n(c),o=s(148);t.default=function(){var e=Object(o.a)();return Object(a.jsx)(n.a,{pageTitle:e.formatMessage({id:"home"}),children:Object(a.jsx)(h.a,{style:{height:"100%",width:"100%",display:"flex",flex:1},children:e.formatMessage({id:"home"})})})}}}]);
+//# sourceMappingURL=16.0496dc6e.chunk.js.map
