@@ -40,7 +40,9 @@ export default function () {
     if (!('indexedDB' in window)) {return null;}
     return openDB('depo', 1, {
       upgrade(db) {
-        db.createObjectStore('stockMovements',  {keyPath: 'id'});
+        if (!db.objectStoreNames.contains('stockMovements')) {
+          const stockMovementsStore =  db.createObjectStore('stockMovements',  {keyPath: 'id'});
+        }
       },
     });
   }
