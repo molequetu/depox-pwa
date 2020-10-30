@@ -108,7 +108,7 @@ const Export = () =>  {
             if ('serviceWorker' in navigator && 'SyncManager' in window) {
               const registration =  navigator.serviceWorker.ready;
               // get registered tags, and check if import-export registerd tag exists
-              const tags =  registration.sync.getTags();
+              if(registration) window.SyncManager.getTags().then(tags => {
               if (tags.includes('import-export')) {
                   clearFormState();
                   // inform user that the request has been queued and will be send when online again
@@ -120,6 +120,7 @@ const Export = () =>  {
                     },
                   })
               }
+            })
             }
           });
       } 
