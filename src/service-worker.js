@@ -77,9 +77,11 @@ const queueImportExport = new Queue('import-export');
 self.addEventListener('fetch', (event) => {
   // Clone the request to ensure it's safe to read when
   // adding to the Queue.
+  if(!self.navigator.onLine) {
   const promiseChain = fetch(event.request.clone()).catch((err) => {
     return queueImportExport.pushRequest({request: event.request});
   });
 
   event.waitUntil(promiseChain);
+}
 });
