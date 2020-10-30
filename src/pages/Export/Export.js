@@ -104,6 +104,23 @@ const Export = () =>  {
           })
           .catch((error) => {
             console.error('Error while exporting, will queue the request and retry later:', error);
+            // future detection for service worker
+            if ('serviceWorker' in navigator && 'SyncManager' in window) {
+              const registration = await navigator.serviceWorker.ready;
+              // get registered tags, and check if import-export registerd tag exists
+              const tags = await registration.sync.getTags();
+              if (tags.includes('import-export')) {
+                  clearFormState();
+                  // inform user that the request has been queued and will be send when online again
+                  enqueueSnackbar(intl.formatMessage({ id: 'request_queued_msg' }), {
+                    variant: 'warning',
+                    anchorOrigin: {
+                      vertical: 'top',
+                      horizontal: 'center',
+                    },
+                  })
+              }
+            }
           });
       } 
 

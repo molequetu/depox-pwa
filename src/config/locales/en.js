@@ -45,7 +45,8 @@ const messages = defineMessages({
   quantity: "Quantity",
   export: "Exports",
   export_products: "Export items",
-  dashboard: "Dashboard"
+  dashboard: "Dashboard",
+  request_queued_msg = "Your request has been queued and will be send when network is available again. You will me noticed if your request fails"
 })
 
 export default messages
