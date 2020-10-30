@@ -73,17 +73,6 @@ self.addEventListener('message', (event) => {
 
 const queueImportExport = new Queue('import-export');
 
-const bgSyncPlugin = new BackgroundSyncPlugin('queueImportExport', {
-  maxRetentionTime: 24 * 60 // Retry for max of 24 Hours (specified in minutes)
-});
-
-registerRoute(
-  /\/api\/.*\/*.json/,
-  new NetworkOnly({
-    plugins: [bgSyncPlugin]
-  }),
-  'POST'
-);
 
 self.addEventListener('fetch', (event) => {
   // Clone the request to ensure it's safe to read when
