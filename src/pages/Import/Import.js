@@ -53,6 +53,7 @@ const Import = () =>  {
     const [quantity, setQuantity] = useState(0)
 
     const endpoint = 'Stocks/import';
+    
     function handleSubmit(event) {
         event.preventDefault();
         importStock();
@@ -67,7 +68,7 @@ const Import = () =>  {
             },
             body: JSON.stringify(data),
           })
-          .then(response => { console.log(response); return response.json()})
+          .then(response => response.json())
           .then(data => {
             if(data.status === 404) {
               // in case of error 404, inform user
@@ -88,16 +89,19 @@ const Import = () =>  {
                 horizontal: 'center',
               },
             })
-            setProduct('');
-            setBin('');
-            setQuantity(0);
+            clearFormState();
           })
           .catch((error) => {
-            console.error('Error while importing:', error);
+            console.error('Error while importing, will queue the request and retry later :', error);
+
           });
       } 
 
-
+      function clearFormState() {
+        setProduct('');
+        setBin('');
+        setQuantity(0);
+      }
       return (
         <Page pageTitle={intl.formatMessage({ id: 'import_products' })}>
         <Paper className={classes.paper} elevation={6}>

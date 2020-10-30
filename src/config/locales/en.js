@@ -40,10 +40,10 @@ const messages = defineMessages({
   registration:'Registration',
   product: "Item",
   bin: "Bin",
-  import : "Import",
+  import : "Imports",
   import_products: "Import items",
   quantity: "Quantity",
-  export: "Export",
+  export: "Exports",
   export_products: "Export items",
   dashboard: "Dashboard"
 })

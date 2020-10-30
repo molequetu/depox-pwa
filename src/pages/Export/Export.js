@@ -68,7 +68,7 @@ const Export = () =>  {
             },
             body: JSON.stringify(data),
           })
-          .then(response => { console.log(response); return response.json()})
+          .then(response =>  response.json())
           .then(data => {
             if(data.status === 404) {
               // in case of error 404, inform user
@@ -100,15 +100,18 @@ const Export = () =>  {
                 horizontal: 'center',
               },
             })
-            setProduct('');
-            setBin('');
-            setQuantity(0);
+            clearFormState();
           })
           .catch((error) => {
-            console.error('Error while importing:', error);
+            console.error('Error while exporting, will queue the request and retry later:', error);
           });
       } 
 
+      function clearFormState() {
+        setProduct('');
+        setBin('');
+        setQuantity(0);
+      }
 
       return (
         <Page pageTitle={intl.formatMessage({ id: 'export_products' })}>
