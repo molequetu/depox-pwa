@@ -65,7 +65,7 @@ export default function () {
     return dbPromise.then(db => {
       const tx = db.transaction('stockMovements', 'readonly');
       const store = tx.objectStore('stockMovements');
-      return store.getAll();
+      return store.getAll().reverse();
     });
   }
 
