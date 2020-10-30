@@ -40,10 +40,10 @@ const messages = defineMessages({
   registration:'Registration',
   product: "Item",
   bin: "Bin",
-  import : "Imports",
+  import : "Import",
   import_products: "Import items",
   quantity: "Quantity",
-  export: "Exports",
+  export: "Export",
   export_products: "Export items",
   dashboard: "Dashboard",
   request_queued_msg: `Your request has been queued and will be send when network is available again.

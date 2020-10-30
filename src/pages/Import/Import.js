@@ -93,7 +93,23 @@ const Import = () =>  {
           })
           .catch((error) => {
             console.error('Error while importing, will queue the request and retry later :', error);
-
+            if ('serviceWorker' in navigator && 'SyncManager' in window) {
+              const registration = navigator.serviceWorker.ready;
+              // get registered tags, and check if import-export registerd tag exists
+              registration.then(reg => reg.sync.getTags()).then(tags => {
+                if (tags.includes('workbox-background-sync:import-export')) {
+                  clearFormState();
+                  // inform user that the request has been queued and will be send when online again
+                  enqueueSnackbar(intl.formatMessage({ id: 'request_queued_msg' }), {
+                    variant: 'warning',
+                    anchorOrigin: {
+                      vertical: 'top',
+                      horizontal: 'center',
+                    },
+                  })
+                }
+              })
+            }
           });
       } 
 

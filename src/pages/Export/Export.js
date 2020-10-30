@@ -10,136 +10,136 @@ import { useSnackbar } from 'notistack'
 import config from 'config/config'
 
 const useStyles = makeStyles((theme) => ({
-    paper: {
-      width: 'auto',
-      marginLeft: theme.spacing(3),
-      marginRight: theme.spacing(3),
-      [theme.breakpoints.up(620 + theme.spacing(6))]: {
-        width: 400,
-        marginLeft: 'auto',
-        marginRight: 'auto',
+  paper: {
+    width: 'auto',
+    marginLeft: theme.spacing(3),
+    marginRight: theme.spacing(3),
+    [theme.breakpoints.up(620 + theme.spacing(6))]: {
+      width: 400,
+      marginLeft: 'auto',
+      marginRight: 'auto',
+    },
+    marginTop: theme.spacing(9),
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    padding: `${theme.spacing(2)}px ${theme.spacing(3)}px ${theme.spacing(
+      3
+    )}px`,
+  },
+  form: {
+    marginTop: theme.spacing(1),
+  },
+  submit: {
+    margin: theme.spacing(3, 0, 2),
+  },
+  container: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: `100%`,
+  },
+}))
+
+
+const Export = () => {
+  const classes = useStyles()
+  const intl = useIntl()
+  const { enqueueSnackbar } = useSnackbar()
+
+  const [product, setProduct] = useState('')
+  const [bin, setBin] = useState('')
+  const [quantity, setQuantity] = useState(0)
+
+  const endpoint = 'Stocks/export'
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    exportStock();
+  }
+
+  function exportStock() {
+    const data = { binCode: bin, itemCode: product, quantity: quantity };
+    fetch(`${config.apiURL + endpoint}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
       },
-      marginTop: theme.spacing(9),
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-      padding: `${theme.spacing(2)}px ${theme.spacing(3)}px ${theme.spacing(
-        3
-      )}px`,
-    },
-    form: {
-      marginTop: theme.spacing(1),
-    },
-    submit: {
-      margin: theme.spacing(3, 0, 2),
-    },
-    container: {
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-      justifyContent: 'center',
-      height: `100%`,
-    },
-  }))
-  
-
-const Export = () =>  {
-    const classes = useStyles()
-    const intl = useIntl()
-    const { enqueueSnackbar } = useSnackbar()
-
-    const [product, setProduct] = useState('')
-    const [bin, setBin] = useState('')
-    const [quantity, setQuantity] = useState(0)
-   
-    const endpoint = 'Stocks/export'
-
-    function handleSubmit(event) {
-        event.preventDefault();
-        exportStock();
-      }
-
-      function exportStock() {
-        const data = { binCode : bin, itemCode : product, quantity : quantity };
-         fetch(`${config.apiURL + endpoint}`, {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
+      body: JSON.stringify(data),
+    })
+      .then(response => response.json())
+      .then(data => {
+        if (data.status === 404) {
+          // in case of error 404, inform user
+          enqueueSnackbar(data.message, {
+            variant: 'error',
+            anchorOrigin: {
+              vertical: 'top',
+              horizontal: 'center',
             },
-            body: JSON.stringify(data),
           })
-          .then(response =>  response.json())
-          .then(data => {
-            if(data.status === 404) {
-              // in case of error 404, inform user
-              enqueueSnackbar(data.message, {
-                variant: 'error',
+          return;
+        }
+        if (data.status === 409) {
+          // in case of error 404, inform user
+          enqueueSnackbar(data.message, {
+            variant: 'error',
+            anchorOrigin: {
+              vertical: 'top',
+              horizontal: 'center',
+            },
+          })
+          return;
+        }
+        // request successfull, inform user and reset form
+        enqueueSnackbar(data.message, {
+          variant: 'success',
+          anchorOrigin: {
+            vertical: 'top',
+            horizontal: 'center',
+          },
+        })
+        clearFormState();
+      })
+      .catch((error) => {
+        console.error('Error while exporting, will queue the request and retry later:', error);
+        // future detection for service worker
+        if ('serviceWorker' in navigator && 'SyncManager' in window) {
+          const registration = navigator.serviceWorker.ready;
+          // get registered tags, and check if import-export registerd tag exists
+          registration.then(reg => reg.sync.getTags()).then(tags => {
+            if (tags.includes('workbox-background-sync:import-export')) {
+              clearFormState();
+              // inform user that the request has been queued and will be send when online again
+              enqueueSnackbar(intl.formatMessage({ id: 'request_queued_msg' }), {
+                variant: 'warning',
                 anchorOrigin: {
                   vertical: 'top',
                   horizontal: 'center',
                 },
               })
-             return;
             }
-            if(data.status === 409) {
-                // in case of error 404, inform user
-                enqueueSnackbar(data.message, {
-                  variant: 'error',
-                  anchorOrigin: {
-                    vertical: 'top',
-                    horizontal: 'center',
-                  },
-                })
-               return;
-              }
-            // request successfull, inform user and reset form
-            enqueueSnackbar(data.message, {
-              variant: 'success',
-              anchorOrigin: {
-                vertical: 'top',
-                horizontal: 'center',
-              },
-            })
-            clearFormState();
           })
-          .catch((error) => {
-            console.error('Error while exporting, will queue the request and retry later:', error);
-            // future detection for service worker
-            if ('serviceWorker' in navigator && 'SyncManager' in window) {
-              const registration =  navigator.serviceWorker.ready;
-              // get registered tags, and check if import-export registerd tag exists
-              if(registration) window.SyncManager.getTags().then(tags => {
-              if (tags.includes('import-export')) {
-                  clearFormState();
-                  // inform user that the request has been queued and will be send when online again
-                  enqueueSnackbar(intl.formatMessage({ id: 'request_queued_msg' }), {
-                    variant: 'warning',
-                    anchorOrigin: {
-                      vertical: 'top',
-                      horizontal: 'center',
-                    },
-                  })
-              }
-            })
-            }
-          });
-      } 
+        }
+      });
+  }
 
-      function clearFormState() {
-        setProduct('');
-        setBin('');
-        setQuantity(0);
-      }
+  function clearFormState() {
+    setProduct('');
+    setBin('');
+    setQuantity(0);
+  }
 
-      return (
-        <Page pageTitle={intl.formatMessage({ id: 'export_products' })}>
-        <Paper className={classes.paper} elevation={6}>
-          <div className={classes.container}>
-            <Typography component="h1" variant="h5">
-              {intl.formatMessage({ id: 'export_products' })}
-            </Typography>
-            <form className={classes.form}   onSubmit={handleSubmit}>  
-          <TextField
+  return (
+    <Page pageTitle={intl.formatMessage({ id: 'export_products' })}>
+      <Paper className={classes.paper} elevation={6}>
+        <div className={classes.container}>
+          <Typography component="h1" variant="h5">
+            {intl.formatMessage({ id: 'export_products' })}
+          </Typography>
+          <form className={classes.form} onSubmit={handleSubmit}>
+            <TextField
               value={product}
               onChange={(e) => setProduct(e.target.value)}
               variant="outlined"
@@ -162,26 +162,26 @@ const Export = () =>  {
               label={intl.formatMessage({ id: 'bin' })}
               id="bin"
             />
-             <TextField
-             value = {quantity}
-             onChange={(e) => setQuantity(e.target.value)}
-             id="quantity"
-             label={intl.formatMessage({ id: 'quantity' })}
-             type="number"
-             InputLabelProps={{
-              shrink: true,
+            <TextField
+              value={quantity}
+              onChange={(e) => setQuantity(e.target.value)}
+              id="quantity"
+              label={intl.formatMessage({ id: 'quantity' })}
+              type="number"
+              InputLabelProps={{
+                shrink: true,
 
-             }}
-             InputProps={{
-              inputProps: { 
+              }}
+              InputProps={{
+                inputProps: {
                   min: 0
-              }
-             }}
-             variant="outlined"
-             margin="normal"
-             required
-             fullWidth
-             name="quantity"
+                }
+              }}
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              name="quantity"
             />
             <Button
               type="submit"
@@ -192,11 +192,11 @@ const Export = () =>  {
             >
               {intl.formatMessage({ id: 'export' })}
             </Button>
-        </form>
+          </form>
         </div>
       </Paper>
     </Page>
-      )
-    }
-  
+  )
+}
+
 export default Export
