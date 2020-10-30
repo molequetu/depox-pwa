@@ -2,8 +2,8 @@
   "files": {
     "main.js": "/depox-pwa/static/js/main.6de0d877.chunk.js",
     "main.js.map": "/depox-pwa/static/js/main.6de0d877.chunk.js.map",
-    "runtime-main.js": "/depox-pwa/static/js/runtime-main.1774473f.js",
-    "runtime-main.js.map": "/depox-pwa/static/js/runtime-main.1774473f.js.map",
+    "runtime-main.js": "/depox-pwa/static/js/runtime-main.0c36378c.js",
+    "runtime-main.js.map": "/depox-pwa/static/js/runtime-main.0c36378c.js.map",
     "static/js/2.f4a62b93.chunk.js": "/depox-pwa/static/js/2.f4a62b93.chunk.js",
     "static/js/2.f4a62b93.chunk.js.map": "/depox-pwa/static/js/2.f4a62b93.chunk.js.map",
     "static/css/3.97ab3077.chunk.css": "/depox-pwa/static/css/3.97ab3077.chunk.css",
@@ -33,8 +33,8 @@
     "static/js/14.b06cd8c7.chunk.js.map": "/depox-pwa/static/js/14.b06cd8c7.chunk.js.map",
     "static/js/15.b6490b6f.chunk.js": "/depox-pwa/static/js/15.b6490b6f.chunk.js",
     "static/js/15.b6490b6f.chunk.js.map": "/depox-pwa/static/js/15.b6490b6f.chunk.js.map",
-    "static/js/16.6dbe4157.chunk.js": "/depox-pwa/static/js/16.6dbe4157.chunk.js",
-    "static/js/16.6dbe4157.chunk.js.map": "/depox-pwa/static/js/16.6dbe4157.chunk.js.map",
+    "static/js/16.8c875f50.chunk.js": "/depox-pwa/static/js/16.8c875f50.chunk.js",
+    "static/js/16.8c875f50.chunk.js.map": "/depox-pwa/static/js/16.8c875f50.chunk.js.map",
     "static/js/17.3af27149.chunk.js": "/depox-pwa/static/js/17.3af27149.chunk.js",
     "static/js/17.3af27149.chunk.js.map": "/depox-pwa/static/js/17.3af27149.chunk.js.map",
     "static/js/18.6e960a48.chunk.js": "/depox-pwa/static/js/18.6e960a48.chunk.js",
@@ -57,7 +57,7 @@
     "static/js/3.b10318af.chunk.js.LICENSE.txt": "/depox-pwa/static/js/3.b10318af.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.1774473f.js",
+    "static/js/runtime-main.0c36378c.js",
     "static/js/2.f4a62b93.chunk.js",
     "static/js/main.6de0d877.chunk.js"
   ]
