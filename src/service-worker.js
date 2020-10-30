@@ -11,8 +11,8 @@ import { clientsClaim } from 'workbox-core';
 import { ExpirationPlugin } from 'workbox-expiration';
 import { precacheAndRoute, createHandlerBoundToURL } from 'workbox-precaching';
 import { registerRoute } from 'workbox-routing';
-import { StaleWhileRevalidate, NetworkOnly } from 'workbox-strategies';
-import {BackgroundSyncPlugin, Queue} from 'workbox-background-sync';
+import { StaleWhileRevalidate } from 'workbox-strategies';
+import { Queue} from 'workbox-background-sync';
 
 clientsClaim();
 
@@ -71,17 +71,18 @@ self.addEventListener('message', (event) => {
 });
 
 
-const queueImportExport = new Queue('import-export');
+// add background sync, with queue for import-export functions
 
+const queueImportExport = new Queue('import-export');
 
 self.addEventListener('fetch', (event) => {
   // Clone the request to ensure it's safe to read when
   // adding to the Queue.
   if(!self.navigator.onLine) {
-  const promiseChain = fetch(event.request.clone()).catch((err) => {
-    return queueImportExport.pushRequest({request: event.request});
-  });
-
-  event.waitUntil(promiseChain);
-}
+    const promiseChain = fetch(event.request.clone()).catch((err) => {
+      if (event.request.method === 'POST')
+      return queueImportExport.pushRequest({request: event.request});
+    });
+    event.waitUntil(promiseChain);
+  }
 });
