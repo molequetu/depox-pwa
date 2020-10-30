@@ -1,7 +1,7 @@
 import { defineMessages } from 'react-intl'
 
 const messages = defineMessages({
-  app_name: 'React Most Wanted',
+  app_name: 'Depo',
   sign_in: 'Sign in',
   sign_out: 'Sign out',
   sign_up: 'Sign up',
@@ -46,7 +46,8 @@ const messages = defineMessages({
   export: "Exports",
   export_products: "Export items",
   dashboard: "Dashboard",
-  request_queued_msg = "Your request has been queued and will be send when network is available again. You will me noticed if your request fails"
+  request_queued_msg: `Your request has been queued and will be send when network is available again.
+  You will me noticed if your request fails`
 })
 
 export default messages
