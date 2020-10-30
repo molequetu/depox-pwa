@@ -26,7 +26,7 @@ export default function () {
           if (!offlineData.length) {
             return;
           } else {
-            setMovements(offlineData);
+            setMovements(offlineData.reverse());
           }
         });
       });
@@ -65,7 +65,7 @@ export default function () {
     return dbPromise.then(db => {
       const tx = db.transaction('stockMovements', 'readonly');
       const store = tx.objectStore('stockMovements');
-      return store.getAll().reverse();
+      return store.getAll();
     });
   }
 
