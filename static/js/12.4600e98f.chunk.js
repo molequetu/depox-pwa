@@ -1,0 +1,2 @@
+(this.webpackJsonpdepo=this.webpackJsonpdepo||[]).push([[12],{382:function(e,t,i){"use strict";i.r(t);var n=i(18),s=(i(0),i(61));t.default=function(){return Object(n.jsxs)("div",{style:{position:"absolute",left:0,top:0,bottom:0,right:0,display:"flex",justifyContent:"center",alignItems:"center",flexDirection:"column"},children:[Object(n.jsx)("h2",{children:"Depo"}),Object(n.jsx)("div",{children:Object(n.jsx)(s.Link,{to:"/dashboard",children:"Dashboard"})})]})}}}]);
+//# sourceMappingURL=12.4600e98f.chunk.js.map

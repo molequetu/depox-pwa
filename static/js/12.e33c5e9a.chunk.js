@@ -1,2 +1,0 @@
-(this.webpackJsonpdepo=this.webpackJsonpdepo||[]).push([[12],{382:function(e,t,n){"use strict";n.r(t);var i=n(18),s=(n(0),n(61));t.default=function(){return Object(i.jsxs)("div",{style:{position:"absolute",left:0,top:0,bottom:0,right:0,display:"flex",justifyContent:"center",alignItems:"center",flexDirection:"column"},children:[Object(i.jsx)("h2",{children:"Landing Page"}),Object(i.jsx)("div",{children:Object(i.jsx)(s.Link,{to:"/dashboard",children:"Home"})})]})}}}]);
-//# sourceMappingURL=12.e33c5e9a.chunk.js.map
