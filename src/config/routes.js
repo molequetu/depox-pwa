@@ -2,18 +2,10 @@
 import React, { lazy } from 'react'
 import AuthorizedRoute from 'base-shell/lib/components/AuthorizedRoute/AuthorizedRoute'
 import UnauthorizedRoute from 'base-shell/lib/components/UnauthorizedRoute/UnauthorizedRoute'
-import { Route } from 'react-router-dom'
 
 const SignIn = lazy(() => import('../pages/SignIn/SignIn'))
 const SignUp = lazy(() => import('../pages/SignUp/SignUp'))
 const PasswordReset = lazy(() => import('../pages/PasswordReset/PasswordReset'))
-const About = lazy(() => import('../pages/About'))
-const Home = lazy(() => import('../pages/Home/Home'))
-const DialogDemo = lazy(() => import('../pages/DialogDemo/DialogDemo'))
-const ToastDemo = lazy(() => import('../pages/ToastDemo/ToastDemo'))
-const FilterDemo = lazy(() => import('../pages/FilterDemo'))
-const ListPageDemo = lazy(() => import('../pages/ListPageDemo'))
-const TabsDemo = lazy(() => import('../pages/TabsDemo'))
 
 const Import = lazy(() => import('../pages/Import/Import'))
 const Export = lazy(() => import('../pages/Export/Export'))
@@ -28,15 +20,9 @@ const routes = [
     exact
     component={PasswordReset}
   />,
-  // <AuthorizedRoute path="/home" exact component={Home} />,
   <AuthorizedRoute path="/dashboard" exact component={Dashboard} />,
   <AuthorizedRoute path="/import" exact component={Import} />,
   <AuthorizedRoute path="/export" exact component={Export} />,
- /*  <AuthorizedRoute path="/dialog_demo" exact component={DialogDemo} />,
-  <AuthorizedRoute path="/toast_demo" exact component={ToastDemo} />,
-  <AuthorizedRoute path="/filter_demo" exact component={FilterDemo} />,
-  <AuthorizedRoute path="/list_page_demo" exact component={ListPageDemo} />,
-  <AuthorizedRoute path="/tabs_demo" exact component={TabsDemo} />, */
 ]
 
 export default routes

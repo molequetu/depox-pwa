@@ -1,6 +1,5 @@
 {
   "name": "depo",
-  "homepage": "https://molequetu.github.io/depox-pwa",
   "version": "0.2.0",
   "private": true,
   "dependencies": {
