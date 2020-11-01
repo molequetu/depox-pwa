@@ -16,7 +16,7 @@ export default function () {
         flexDirection: 'column',
       }}
     >
-      <h2>Landing Page</h2>
+      <h2>Depo</h2>
 
       <div>
         <Link to="/dashboard">Dashboard</Link>

@@ -71,7 +71,7 @@ const Import = () =>  {
           .then(response => response.json())
           .then(data => {
             if(data.status === 404) {
-              // in case of error 404, inform user
+              // in case of error 404, inform user and return
               enqueueSnackbar(data.message, {
                 variant: 'error',
                 anchorOrigin: {
@@ -96,7 +96,8 @@ const Import = () =>  {
             if ('serviceWorker' in navigator && 'SyncManager' in window) {
               const registration = navigator.serviceWorker.ready;
               // get registered tags, and check if import-export registerd tag exists
-              registration.then(reg => reg.sync.getTags()).then(tags => {
+              registration
+                .then(reg => reg.sync.getTags()).then(tags => {
                 if (tags.includes('workbox-background-sync:import-export')) {
                   clearFormState();
                   // inform user that the request has been queued and will be send when online again
